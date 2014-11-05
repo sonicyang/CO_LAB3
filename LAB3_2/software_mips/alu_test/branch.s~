@@ -1,0 +1,37 @@
+move	$1 ,$0 
+li	$2 , 1		
+li	$3 ,-1		
+li	$4,536870912	
+
+
+.BLTZ: 
+       	bltz  	$3,.BGEZ
+       	nop
+       	sw	$3,0($4)
+.BGEZ:
+       	bgez 	$1,.BEQ
+       	nop
+       	sw	$3,4($4)
+.BEQ:
+       	beq  	$1,$0,.BNE
+       	nop
+       	sw	$3,8($4)
+
+.BNE :
+       	bne  	$1,$2,.BLEZ
+       	nop
+       	sw	$3,12($4)
+
+.BLEZ :
+       	blez  	$1,.BGTZ
+       	nop
+       	sw	$3,16($4)
+
+.BGTZ :	 
+      	bgtz  	$2,.EXIT
+       	nop
+       	sw	$3,18($4)		
+
+.EXIT:
+	j	$31
+	nop
